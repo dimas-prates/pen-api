@@ -7,7 +7,6 @@ export class SubjectController {
 
             return res.status(400).json({ message: 'Name is required' })
         }
-
         try {
             const newSubject = subjectRepository.create({ name })
 
