@@ -2,14 +2,39 @@
    "compilerOptions": {
       "lib": [
          "es5",
-         "es6"
+         "es6",
+         "ES2018"
       ],
-      "target": "es5",
+      "target": "ES2018",
       "module": "commonjs",
       "moduleResolution": "node",
-      "outDir": "./build",
+      // All js files compiled directory
+      "outDir": "./dist",
+      // Obligated due typeorm which uses decorator
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
-      "sourceMap": true
+      // "sourceMap": true
+      "resolveJsonModule": true,
+      "allowJs": true,
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "strict": true,
+      // Force types on code
+      "noImplicitAny": true,
+      // Allow to NOT specify types during entities developtment
+      "strictPropertyInitialization": false,
+   },
+   // Files/Folder included in typescript verification
+   "include": [
+      "src/**/*"
+   ],
+   // Third-party Files/Folder, to not be verified, make it faster the verification
+   "exclude": [
+      "node_modules",
+      "dist"
+   ],
+   // Helps validate ts files based on include/exclude options
+   "ts-node": {
+      "files": true
    }
 }
