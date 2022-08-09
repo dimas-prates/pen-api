@@ -1,17 +1,17 @@
+import 'dotenv/config'
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { User } from "./entity/User"
-
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
-    port: 5432,
-    username: "test",
-    password: "test",
-    database: "test",
-    synchronize: true,
-    logging: false,
-    entities: [User],
-    migrations: [],
-    subscribers: [],
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT as number | undefined,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    // synchronize: true,
+    // logging: false,
+    //Mapping entities, ALL and ANY folders in entities folder with ts/js extension
+    entities: [`${__dirname}/**/entities/*.{ts,js}`],
+    migrations: [`${__dirname}/**/migrations/*.{ts,js}`],
+    // subscribers: [],
 })
