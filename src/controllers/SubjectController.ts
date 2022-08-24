@@ -7,14 +7,9 @@ export class SubjectController {
 
             return res.status(400).json({ message: 'Name is required' })
         }
-        try {
-            const newSubject = subjectRepository.create({ name })
+        const newSubject = subjectRepository.create({ name })
 
-            await subjectRepository.save(newSubject)
-            return res.status(201).json(newSubject)
-        } catch (err) {
-            console.log(err)
-            return res.status(500).json({ message: 'Internal Server Error' })
-        }
+        await subjectRepository.save(newSubject)
+        return res.status(201).json(newSubject)
     }
 }
